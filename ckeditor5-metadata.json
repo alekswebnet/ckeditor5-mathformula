@@ -1,0 +1,17 @@
+{
+  "plugins": [
+    {
+      "name": "Formula",
+      "className": "Formula",
+      "description": "Adds text to the editor.",
+      "path": "src/formula.ts",
+      "uiComponents": [
+        {
+          "name": "formulaButton",
+          "type": "Button",
+          "iconPath": "theme/icons/ckeditor.svg"
+        }
+      ]
+    }
+  ]
+}
