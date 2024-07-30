@@ -1,7 +1,7 @@
 {
-  "name": "@alekswebnet/ckeditor5-formula",
+  "name": "ckeditor5-mathformula",
   "version": "0.0.1",
-  "description": "A plugin for CKEditor 5.",
+  "description": "A math formula plugin for CKEditor 5",
   "keywords": [
     "ckeditor",
     "ckeditor5",
@@ -41,6 +41,7 @@
     "@ckeditor/ckeditor5-package-tools": "^2.0.0",
     "@types/chai": "^4.3.1",
     "@types/mocha": "^9.1.1",
+    "@types/sinon": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "~5.43.0",
     "@typescript-eslint/parser": "^5.18.0",
     "ckeditor5": "latest",

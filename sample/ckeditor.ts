@@ -31,14 +31,16 @@ import {
 
 import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 
-import Formula from '../src/formula.js';
+import Math from '../src/math.js';
+import AutoMath from '../src/automath.js';
 
 import 'ckeditor5/ckeditor5.css';
 
 ClassicEditor
 	.create( document.getElementById( 'editor' )!, {
 		plugins: [
-			Formula,
+			Math,
+			AutoMath,
 			Essentials,
 			Autoformat,
 			BlockQuote,
@@ -65,8 +67,6 @@ ClassicEditor
 			'undo',
 			'redo',
 			'|',
-			'formulaButton',
-			'|',
 			'heading',
 			'|',
 			'bold',
@@ -83,7 +83,8 @@ ClassicEditor
 			'blockQuote',
 			'insertTable',
 			'mediaEmbed',
-			'codeBlock'
+			'codeBlock',
+			'math'
 		],
 		image: {
 			toolbar: [
@@ -100,6 +101,17 @@ ClassicEditor
 				'tableRow',
 				'mergeTableCells'
 			]
+		},
+		math: {
+			engine: 'mathjax', // or katex or function. E.g. (equation, element, display) => { ... }
+			lazyLoad: undefined,
+			outputType: 'script', // or span
+			className: 'math-tex',
+			forceOutputType: false, // forces output to use outputType
+			enablePreview: true, // Enable preview view
+			previewClassName: [], // Class names to add to previews
+			popupClassName: [], // Class names to add to math popup balloon
+			katexRenderOptions: {} // KaTeX only options for katex.render(ToString)
 		}
 	} )
 	.then( editor => {
