@@ -3,8 +3,8 @@ import type { KatexOptions } from '../typings-external.js';
 import { renderEquation } from '../utils.js';
 
 export default class MathView extends View {
-	public value: string;
-	public display: boolean;
+	public declare value: string;
+	public declare display: boolean;
 	public previewUid: string;
 	public previewClassName: Array<string>;
 	public katexRenderOptions: KatexOptions;
@@ -36,7 +36,6 @@ export default class MathView extends View {
 		this.previewUid = previewUid;
 		this.katexRenderOptions = katexRenderOptions;
 		this.previewClassName = previewClassName;
-
 		this.set( 'value', '' );
 		this.value = '';
 		this.set( 'display', false );

@@ -31,8 +31,9 @@ import {
 
 import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 
-import Math from '../src/math.js';
-import AutoMath from '../src/automath.js';
+import { Math, AutoformatMath } from '../dist/index.js';
+import '../dist/index.css';
+// import { Math, AutoformatMath } from '../src/index.js';
 
 import 'ckeditor5/ckeditor5.css';
 
@@ -40,7 +41,7 @@ ClassicEditor
 	.create( document.getElementById( 'editor' )!, {
 		plugins: [
 			Math,
-			AutoMath,
+			AutoformatMath,
 			Essentials,
 			Autoformat,
 			BlockQuote,
