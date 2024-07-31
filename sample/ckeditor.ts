@@ -103,15 +103,10 @@ ClassicEditor
 			]
 		},
 		math: {
-			engine: 'mathjax', // or katex or function. E.g. (equation, element, display) => { ... }
-			lazyLoad: undefined,
-			outputType: 'script', // or span
-			className: 'math-tex',
-			forceOutputType: false, // forces output to use outputType
-			enablePreview: true, // Enable preview view
-			previewClassName: [], // Class names to add to previews
-			popupClassName: [], // Class names to add to math popup balloon
-			katexRenderOptions: {} // KaTeX only options for katex.render(ToString)
+			engine: 'mathjax',
+			outputType: 'script',
+			forceOutputType: false,
+			enablePreview: true
 		}
 	} )
 	.then( editor => {

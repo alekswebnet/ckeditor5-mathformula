@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* globals document, Event  */
 
-import { ClassicEditor, keyCodes, ContextualBalloon, ButtonView, View, Paragraph, ClickObserver, type EditorConfig } from 'ckeditor5';
-import { setData as setModelData } from '@ckeditor/ckeditor5-dev-utils';
+import {
+	ClassicEditor,
+	keyCodes,
+	ContextualBalloon, ButtonView, View, Paragraph, ClickObserver, type EditorConfig, _setModelData } from 'ckeditor5';
 
 import MathUI from '../src/mathui.js';
 import MainFormView from '../src/ui/mainformview.js';
@@ -110,7 +112,7 @@ describe( 'MathUI', () => {
 		} );
 
 		it( 'should not work if the math command is disabled', () => {
-			setModelData( editor.model, '<paragraph>f[o]o</paragraph>' );
+			_setModelData( editor.model, '<paragraph>f[o]o</paragraph>' );
 
 			const command = editor.commands.get( 'math' )!;
 
@@ -122,7 +124,7 @@ describe( 'MathUI', () => {
 		} );
 
 		it( 'should not throw if the UI is already visible', () => {
-			setModelData( editor.model, '<paragraph>f[o]o</paragraph>' );
+			_setModelData( editor.model, '<paragraph>f[o]o</paragraph>' );
 
 			mathUIFeature._showUI();
 
@@ -132,7 +134,7 @@ describe( 'MathUI', () => {
 		} );
 
 		it( 'should add #mainFormView to the balloon and attach the balloon to the selection when text fragment is selected', () => {
-			setModelData( editor.model, '<paragraph>f[o]o</paragraph>' );
+			_setModelData( editor.model, '<paragraph>f[o]o</paragraph>' );
 			const selectedRange = editorElement.ownerDocument.getSelection()?.getRangeAt( 0 );
 
 			mathUIFeature._showUI();
@@ -147,7 +149,7 @@ describe( 'MathUI', () => {
 		} );
 
 		it( 'should add #mainFormView to the balloon and attach the balloon to the selection when selection is collapsed', () => {
-			setModelData( editor.model, '<paragraph>f[]oo</paragraph>' );
+			_setModelData( editor.model, '<paragraph>f[]oo</paragraph>' );
 			const selectedRange = editorElement.ownerDocument.getSelection()?.getRangeAt( 0 );
 
 			mathUIFeature._showUI();
@@ -162,7 +164,7 @@ describe( 'MathUI', () => {
 		} );
 
 		it( 'should disable #mainFormView element when math command is disabled', () => {
-			setModelData( editor.model, '<paragraph>f[o]o</paragraph>' );
+			_setModelData( editor.model, '<paragraph>f[o]o</paragraph>' );
 
 			mathUIFeature._showUI();
 
@@ -304,7 +306,7 @@ describe( 'MathUI', () => {
 			} );
 
 			it( 'should make stack with math visible on Ctrl+M keystroke - math', () => {
-				setModelData( editor.model, '<paragraph><$text equation="x^2">f[]oo</$text></paragraph>' );
+				_setModelData( editor.model, '<paragraph><$text equation="x^2">f[]oo</$text></paragraph>' );
 
 				const customView = new View();
 
@@ -407,7 +409,7 @@ describe( 'MathUI', () => {
 
 			describe( 'binding', () => {
 				beforeEach( () => {
-					setModelData( editor.model, '<paragraph>f[o]o</paragraph>' );
+					_setModelData( editor.model, '<paragraph>f[o]o</paragraph>' );
 				} );
 
 				it( 'should bind mainFormView.mathInputView#value to math command value', () => {

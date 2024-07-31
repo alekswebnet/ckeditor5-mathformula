@@ -1,7 +1,6 @@
 import Mathematics from '../src/math.js';
 import AutoMath from '../src/automath.js';
-import { ClassicEditor, Clipboard, Paragraph, Undo, Typing, type EditorConfig } from 'ckeditor5';
-import { getData, setData } from '@ckeditor/ckeditor5-dev-utils';
+import { ClassicEditor, Clipboard, Paragraph, Undo, Typing, type EditorConfig, _getModelData, _setModelData } from 'ckeditor5';
 import { expect } from 'chai';
 import { useFakeTimers, type SinonFakeTimers } from 'sinon';
 
@@ -60,40 +59,40 @@ describe( 'AutoMath - integration', () => {
 		} );
 
 		it( 'replaces pasted text with mathtex element after 100ms', () => {
-			setData( editor.model, '<paragraph>[]</paragraph>' );
+			_setModelData( editor.model, '<paragraph>[]</paragraph>' );
 			pasteHtml( editor, '\\[x^2\\]' );
 
-			expect( getData( editor.model ) ).to.equal(
+			expect( _getModelData( editor.model ) ).to.equal(
 				'<paragraph>\\[x^2\\][]</paragraph>'
 			);
 
 			clock.tick( 100 );
 
-			expect( getData( editor.model ) ).to.equal(
+			expect( _getModelData( editor.model ) ).to.equal(
 				'<paragraph>[<mathtex display="true" equation="x^2" type="script"></mathtex>]</paragraph>'
 			);
 		} );
 
 		it( 'replaces pasted text with inline mathtex element after 100ms', () => {
-			setData( editor.model, '<paragraph>[]</paragraph>' );
+			_setModelData( editor.model, '<paragraph>[]</paragraph>' );
 			pasteHtml( editor, '\\(x^2\\)' );
 
-			expect( getData( editor.model ) ).to.equal(
+			expect( _getModelData( editor.model ) ).to.equal(
 				'<paragraph>\\(x^2\\)[]</paragraph>'
 			);
 
 			clock.tick( 100 );
 
-			expect( getData( editor.model ) ).to.equal(
+			expect( _getModelData( editor.model ) ).to.equal(
 				'<paragraph>[<mathtex display="false" equation="x^2" type="script"></mathtex>]</paragraph>'
 			);
 		} );
 
 		it( 'can undo auto-mathing', () => {
-			setData( editor.model, '<paragraph>[]</paragraph>' );
+			_setModelData( editor.model, '<paragraph>[]</paragraph>' );
 			pasteHtml( editor, '\\[x^2\\]' );
 
-			expect( getData( editor.model ) ).to.equal(
+			expect( _getModelData( editor.model ) ).to.equal(
 				'<paragraph>\\[x^2\\][]</paragraph>'
 			);
 
@@ -101,40 +100,40 @@ describe( 'AutoMath - integration', () => {
 
 			editor.commands.execute( 'undo' );
 
-			expect( getData( editor.model ) ).to.equal(
+			expect( _getModelData( editor.model ) ).to.equal(
 				'<paragraph>\\[x^2\\][]</paragraph>'
 			);
 		} );
 
 		it( 'works for not collapsed selection inside single element', () => {
-			setData( editor.model, '<paragraph>[Foo]</paragraph>' );
+			_setModelData( editor.model, '<paragraph>[Foo]</paragraph>' );
 			pasteHtml( editor, '\\[x^2\\]' );
 
 			clock.tick( 100 );
 
-			expect( getData( editor.model ) ).to.equal(
+			expect( _getModelData( editor.model ) ).to.equal(
 				'<paragraph>[<mathtex display="true" equation="x^2" type="script"></mathtex>]</paragraph>'
 			);
 		} );
 
 		it( 'works for not collapsed selection over a few elements', () => {
-			setData( editor.model, '<paragraph>Fo[o</paragraph><paragraph>Ba]r</paragraph>' );
+			_setModelData( editor.model, '<paragraph>Fo[o</paragraph><paragraph>Ba]r</paragraph>' );
 			pasteHtml( editor, '\\[x^2\\]' );
 
 			clock.tick( 100 );
 
-			expect( getData( editor.model ) ).to.equal(
+			expect( _getModelData( editor.model ) ).to.equal(
 				'<paragraph>Fo[<mathtex display="true" equation="x^2" type="script"></mathtex>]r</paragraph>'
 			);
 		} );
 
 		it( 'inserts mathtex in-place (collapsed selection)', () => {
-			setData( editor.model, '<paragraph>Foo []Bar</paragraph>' );
+			_setModelData( editor.model, '<paragraph>Foo []Bar</paragraph>' );
 			pasteHtml( editor, '\\[x^2\\]' );
 
 			clock.tick( 100 );
 
-			expect( getData( editor.model ) ).to.equal(
+			expect( _getModelData( editor.model ) ).to.equal(
 				'<paragraph>Foo ' +
 				'[<mathtex display="true" equation="x^2" type="script"></mathtex>]' +
 				'Bar</paragraph>'
@@ -142,12 +141,12 @@ describe( 'AutoMath - integration', () => {
 		} );
 
 		it( 'inserts math in-place (non-collapsed selection)', () => {
-			setData( editor.model, '<paragraph>Foo [Bar] Baz</paragraph>' );
+			_setModelData( editor.model, '<paragraph>Foo [Bar] Baz</paragraph>' );
 			pasteHtml( editor, '\\[x^2\\]' );
 
 			clock.tick( 100 );
 
-			expect( getData( editor.model ) ).to.equal(
+			expect( _getModelData( editor.model ) ).to.equal(
 				'<paragraph>Foo ' +
 				'[<mathtex display="true" equation="x^2" type="script"></mathtex>]' +
 				' Baz</paragraph>'
@@ -155,12 +154,12 @@ describe( 'AutoMath - integration', () => {
 		} );
 
 		it( 'does nothing if pasted two equation as text', () => {
-			setData( editor.model, '<paragraph>[]</paragraph>' );
+			_setModelData( editor.model, '<paragraph>[]</paragraph>' );
 			pasteHtml( editor, '\\[x^2\\] \\[\\sqrt{x}2\\]' );
 
 			clock.tick( 100 );
 
-			expect( getData( editor.model ) ).to.equal(
+			expect( _getModelData( editor.model ) ).to.equal(
 				'<paragraph>\\[x^2\\] \\[\\sqrt{x}2\\][]</paragraph>'
 			);
 		} );
@@ -177,7 +176,7 @@ describe( 'AutoMath - integration', () => {
 
 	function createDataTransfer( data: Record<string, string> ) {
 		return {
-			getData( type: string ) {
+			_getModelData( type: string ) {
 				return data[ type ];
 			}
 		};

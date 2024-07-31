@@ -56,7 +56,7 @@ function dist( path ) {
 		sourceMap: true,
 		minify: true,
 		browser: true,
-		name: '@alekswebnet/ckeditor5-formula',
+		name: 'ckeditor5-mathformula',
 		external: [
 			'ckeditor5',
 			'ckeditor5-premium-features'
