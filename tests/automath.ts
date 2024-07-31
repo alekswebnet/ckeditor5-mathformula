@@ -1,8 +1,8 @@
 import Mathematics from '../src/math.js';
 import AutoMath from '../src/automath.js';
-import { ClassicEditor, Clipboard, Paragraph, Undo, Typing, type EditorConfig, _getModelData, _setModelData } from 'ckeditor5';
+import { ClassicEditor, Clipboard, Paragraph, Undo, Typing, type EditorConfig, _getModelData, _setModelData, global } from 'ckeditor5';
 import { expect } from 'chai';
-import { useFakeTimers, type SinonFakeTimers } from 'sinon';
+import * as sinon from 'sinon';
 
 describe( 'AutoMath - integration', () => {
 	let editorElement: HTMLDivElement, editor: ClassicEditor;
@@ -48,10 +48,10 @@ describe( 'AutoMath - integration', () => {
 	} );
 
 	describe( 'use fake timers', () => {
-		let clock: SinonFakeTimers;
+		let clock: any;
 
 		beforeEach( () => {
-			clock = useFakeTimers();
+			clock = sinon.useFakeTimers();
 		} );
 
 		afterEach( () => {
