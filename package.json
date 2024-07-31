@@ -1,6 +1,6 @@
 {
   "name": "ckeditor5-mathformula",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A math formula plugin for CKEditor 5",
   "keywords": [
     "ckeditor",
@@ -14,18 +14,6 @@
   "main": "dist/index.ts",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./translations/*.js": {
-      "types": "./dist/translations/*.d.ts",
-      "import": "./dist/translations/*.js"
-    },
-    "./*.css": "./dist/*.css",
-    "./package.json": "./package.json"
-  },
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0",
