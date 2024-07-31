@@ -1,6 +1,6 @@
 {
   "name": "ckeditor5-mathformula",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A math formula plugin for CKEditor 5",
   "keywords": [
     "ckeditor",
@@ -24,7 +24,6 @@
     "ckeditor5-metadata.json"
   ],
   "devDependencies": {
-    "@ckeditor/ckeditor5-autoformat": "^42.0.2",
     "@ckeditor/ckeditor5-dev-build-tools": "42.0.0",
     "@ckeditor/ckeditor5-inspector": ">=4.1.0",
     "@ckeditor/ckeditor5-package-tools": "^2.0.0",
