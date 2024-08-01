@@ -105,7 +105,7 @@ ClassicEditor
 		},
 		math: {
 			engine: 'mathjax',
-			outputType: 'script',
+			outputType: 'span',
 			forceOutputType: false,
 			enablePreview: true
 		}
