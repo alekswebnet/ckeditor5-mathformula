@@ -11,7 +11,8 @@ import {
 	ViewCollection,
 	type InputTextView,
 	type FocusableView,
-	Locale, FocusTracker, KeystrokeHandler
+	Locale, FocusTracker, KeystrokeHandler,
+	type LocaleTranslate
 } from 'ckeditor5';
 import { extractDelimiters, hasDelimiters } from '../utils.js';
 import MathView from './mathview.js';
@@ -66,10 +67,10 @@ export default class MainFormView extends View {
 		this.saveButtonView.type = 'submit';
 
 		// Equation input
-		this.mathInputView = this._createMathInput();
+		this.mathInputView = this._createMathInput( t );
 
 		// Display button
-		this.displayButtonView = this._createDisplayButton();
+		this.displayButtonView = this._createDisplayButton( t );
 
 		// Cancel button
 		this.cancelButtonView = this._createButton( t( 'Cancel' ), cancelIcon, 'ck-button-cancel', 'cancel' );
@@ -186,9 +187,7 @@ export default class MainFormView extends View {
 		}
 	} );
 
-	private _createMathInput() {
-		const t = this.locale.t;
-
+	private _createMathInput( t: LocaleTranslate ) {
 		// Create equation input
 		const mathInput = new MathInputView( this.locale );
 		const fieldView = mathInput.fieldView;
@@ -253,9 +252,7 @@ export default class MainFormView extends View {
 		return button;
 	}
 
-	private _createDisplayButton() {
-		const t = this.locale.t;
-
+	private _createDisplayButton( t: LocaleTranslate ) {
 		const switchButton = new SwitchButtonView( this.locale );
 
 		switchButton.set( {

@@ -36,9 +36,19 @@ import '../dist/index.css';
 // import { Math, AutoformatMath } from '../src/index.js';
 
 import 'ckeditor5/ckeditor5.css';
+import coreTranslationsDe from 'ckeditor5/translations/de.js';
+
+coreTranslationsDe.de.dictionary[ 'Insert math' ] = 'Mathe einfügen';
+coreTranslationsDe.de.dictionary[ 'Display mode' ] = 'Anzeigemodus';
+coreTranslationsDe.de.dictionary[ 'Equation preview' ] = 'Vorschau der Gleichung';
+coreTranslationsDe.de.dictionary[ 'Insert equation in TeX format.' ] = 'Gleichung im TeX-Format einfügen.';
 
 ClassicEditor
 	.create( document.getElementById( 'editor' )!, {
+		language: {
+			// The UI will be German.
+			ui: 'de'
+		},
 		plugins: [
 			Math,
 			AutoformatMath,
@@ -108,12 +118,14 @@ ClassicEditor
 			outputType: 'span',
 			forceOutputType: false,
 			enablePreview: true
-		}
+		},
+		translations: [
+			coreTranslationsDe
+		]
 	} )
 	.then( editor => {
 		window.editor = editor;
 		CKEditorInspector.attach( editor );
-		window.console.log( 'CKEditor 5 is ready.', editor );
 	} )
 	.catch( err => {
 		window.console.error( err.stack );
