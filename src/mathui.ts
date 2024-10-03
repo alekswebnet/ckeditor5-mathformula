@@ -61,7 +61,6 @@ export default class MathUI extends Plugin {
 
 	private _createFormView() {
 		const editor = this.editor;
-		console.log( editor );
 		const mathCommand = editor.commands.get( 'math' );
 		if ( !( mathCommand instanceof MathCommand ) ) {
 			/**
